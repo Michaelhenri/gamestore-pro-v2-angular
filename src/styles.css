@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #0d0e12;
+  color: #ffffff;
+}
+
+.bg-topo-gamer {
+  background-color: #161920 !important;
+}
+
+.text-icon {
+  color: #00d2ff !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #00d2ff !important;
+}
+
+.bg-banner-gamer {
+  background-color: #161920;
+  border: 1px solid #232733;
+}
+
+.btn-gamer-neon {
+  background-color: #00d2ff;
+  color: #0d0e12;
+  transition: all 0.3s ease;
+}
+
+.btn-gamer-neon:hover {
+  background-color: transparent;
+  color: #00d2ff;
+  border: 1px solid #00d2ff;
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+.seta-ante-borda {
+  left: 10px !important;
+}
+
+.seta-prox-borda {
+  right: 10px !important;
+}
+
+@media (min-width: 992px) {
+  .seta-ante-borda {
+    left: -50px !important;
+  }
+  .seta-prox-borda {
+    right: -50px !important;
+  }
+}
+
+.escondido {
+  display: none;
+  opacity: 0;
+}
