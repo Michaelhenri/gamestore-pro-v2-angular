@@ -1,0 +1,186 @@
+.catalog-section {
+  padding: 40px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #ffffff;
+  margin-bottom: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Cor do destaque do título voltada para o azul ciano original */
+.highlight {
+  color: #00bcd4;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Card ajustado para o fundo escuro com borda suave */
+.game-card {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #2a2a2a;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.25);
+}
+
+/* Ajuste das cores dos textos dentro dos cards */
+mat-card-title {
+  color: #ffffff !important;
+  font-size: 1.25rem !important;
+  font-weight: bold !important;
+}
+
+mat-card-subtitle {
+  color: #00bcd4 !important; /* Categoria em azul */
+  font-size: 0.85rem !important;
+  margin-top: 4px !important;
+}
+
+.game-description {
+  margin: 12px 0;
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.game-price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #00e676; /* Verde chamativo para o preço */
+  margin: 8px 0;
+}
+
+/* Botão de comprar no padrão do Angular Material com tom escuro/azul */
+.game-card button {
+  background-color: #ffffff !important;
+  color: #121212 !important;
+  font-weight: bold !important;
+}
+
+.game-card button mat-icon {
+  color: #121212 !important;
+}
+
+.game-card button:hover {
+  background-color: #00bcd4 !important;
+  color: #ffffff !important;
+}
+.catalog-container {
+  padding: 20px 0;
+}
+
+.catalog-section {
+  padding: 30px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: left;
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.highlight {
+  color: #00bcd4;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.game-card {
+  background-color: #16181e !important;
+  color: #ffffff !important;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #232730;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+mat-card-header {
+  padding: 16px 16px 0 16px !important;
+}
+
+mat-card-title {
+  color: #ffffff !important;
+  font-size: 1.15rem !important;
+  font-weight: bold !important;
+}
+
+mat-card-subtitle {
+  color: #00bcd4 !important;
+  font-size: 0.85rem !important;
+  margin-top: 4px !important;
+}
+
+mat-card-content {
+  padding: 0 16px !important;
+  flex-grow: 1;
+}
+
+.game-description {
+  margin: 12px 0;
+  color: #8d96a5;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.game-price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 12px 0 8px 0;
+}
+
+mat-card-actions {
+  padding: 0 16px 16px 16px !important;
+}
+
+/* Botão azul neon fiel ao site original */
+.buy-button {
+  width: 100%;
+  background-color: #00bcd4 !important;
+  color: #000000 !important;
+  font-weight: bold !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.5px;
+  border-radius: 4px !important;
+  padding: 8px 0 !important;
+}
+
+.buy-button:hover {
+  background-color: #00acc1 !important;
+}
+.game-card button:hover mat-icon {
+  color: #ffffff !important;
+}

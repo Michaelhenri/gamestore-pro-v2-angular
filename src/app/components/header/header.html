@@ -1,25 +1,19 @@
-<header class="mb-5">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-topo-gamer">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-white d-flex align-items-center" routerLink="/">
-        <img src="assets/logo.png" alt="Logo GameStore Pro" width="40" height="40" class="me-2">
-        GAMESTORE <span class="text-icon">PRO</span>
-      </a>
+<mat-toolbar class="header-toolbar">
+  <div class="logo-container" routerLink="/">
+    <img src="assets/logo.png" alt="Logo GameStore Pro" class="logo-img">
+    <span class="logo-text">GAMESTORE <span class="logo-highlight">PRO</span></span>
+  </div>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuGamer">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+  <span class="spacer"></span>
 
-      <div class="collapse navbar-collapse" id="menuGamer">
-        <div class="navbar-nav ms-auto align-items-center">
-          <a class="nav-link text-white px-3" routerLink="/">HOME</a>
-          <a class="nav-link text-white px-3" href="#section-vendidos">PRODUTOS</a>
-          <a class="nav-link text-white px-3" routerLink="/login">LOGIN</a>
-          <a class="nav-link text-icon px-3" href="#carrinho">
-            <i class="bi bi-cart3"></i> Carrinho (0)
-          </a>
-        </div>
-      </div>
-    </div>
+  <nav class="nav-links">
+    <a mat-button routerLink="/">HOME</a>
+    <a mat-button href="#section-vendidos">PRODUTOS</a>
+    <a mat-button routerLink="/login">LOGIN</a>
+    
+    <a mat-raised-button color="accent" href="#carrinho" class="cart-btn">
+      <mat-icon>shopping_cart</mat-icon>
+      <span>Carrinho (0)</span>
+    </a>
   </nav>
-</header>
+</mat-toolbar>

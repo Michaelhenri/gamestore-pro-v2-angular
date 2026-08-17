@@ -1,0 +1,27 @@
+.footer-container {
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 20px 24px 15px;
+  border-top: 1px solid #2d2d2d;
+  margin-top: auto;
+}
+
+.footer-content {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.footer-brand h3 {
+  margin: 0 0 8px;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.logo-highlight {
+  color: #00bcd4;
+}
+
+.footer-brand p {
+  color: #757575;
+  font-size: 0.85rem;
+}

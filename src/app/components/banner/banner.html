@@ -1,0 +1,47 @@
+<section class="banner-section">
+  <div class="banner-container">
+    
+    <!-- Trilha que desliza horizontalmente -->
+    <div 
+      class="banner-track" 
+      [style.transform]="'translateX(-' + (slideAtual * 100) + '%)'">
+      
+      <div 
+        class="slide-content" 
+        *ngFor="let slide of slides"
+        [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(' + slide.imagem + ')'}">
+        
+        <span class="badge" [ngClass]="slide.badgeClass">{{ slide.badge }}</span>
+        <h1 class="slide-title">
+          {{ slide.titulo }} <span class="highlight">{{ slide.destaque }}</span>
+        </h1>
+        <p class="slide-description">{{ slide.descricao }}</p>
+        <a [href]="slide.link" class="banner-btn">
+          {{ slide.botaoTexto }}
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Seta Anterior -->
+    <button class="nav-btn prev-btn" (click)="slideAnterior()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <!-- Seta Próximo -->
+    <button class="nav-btn next-btn" (click)="proximoSlide()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <!-- Indicadores / Bolinhas -->
+    <div class="banner-indicators">
+      <span 
+        *ngFor="let slide of slides; let i = index" 
+        class="indicator" 
+        [class.active]="i === slideAtual"
+        (click)="irParaSlide(i)">
+      </span>
+    </div>
+
+  </div>
+</section>

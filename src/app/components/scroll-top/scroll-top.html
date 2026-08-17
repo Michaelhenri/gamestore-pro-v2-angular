@@ -1,8 +1,9 @@
 <button 
-  type="button" 
-  class="btn btn-gamer-neon position-fixed bottom-0 end-0 m-4 rounded-circle p-3 shadow"
-  [class.escondido]="!visivel"
-  (click)="voltarAoTopo()"
+  *ngIf="isVisible" 
+  mat-fab 
+  color="accent" 
+  class="scroll-top-btn" 
+  (click)="scrollToTop()"
   aria-label="Voltar ao topo">
-  <i class="bi bi-arrow-up"></i>
+  <mat-icon>keyboard_arrow_up</mat-icon>
 </button>

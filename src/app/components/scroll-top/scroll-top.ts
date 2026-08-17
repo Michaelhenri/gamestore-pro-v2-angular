@@ -1,21 +1,28 @@
 import { Component, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-scroll-top',
-  imports: [],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './scroll-top.html',
   styleUrl: './scroll-top.css'
 })
-export class ScrollTop {
-  visivel = false;
+export class ScrollTopComponent {
+  isVisible = false;
 
-  @HostListener('window:scroll')
+  @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Mostra o botão apenas se rolar mais de 300px para baixo
-    this.visivel = window.scrollY > 300;
+    this.isVisible = window.scrollY > 300;
   }
 
-  voltarAoTopo() {
+  scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
