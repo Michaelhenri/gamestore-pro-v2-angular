@@ -1,7 +1,15 @@
 .scroll-top-btn {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 99;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 99999 !important;
+  background-color: #00bcd4 !important;
+  color: #121212 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-top-btn:hover {
+  background-color: #00acc1 !important;
+  transform: translateY(-3px);
 }
