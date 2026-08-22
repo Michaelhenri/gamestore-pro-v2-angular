@@ -40,7 +40,6 @@
   gap: 8px;
 }
 
-/* Links normais do menu (Home, Produtos, Login) */
 .nav-links a:not(.cart-btn) {
   color: #ffffff !important;
   font-weight: 500;
@@ -52,15 +51,58 @@
   color: #00bcd4 !important;
 }
 
-/* Botão do Carrinho */
 .cart-btn {
   margin-left: 12px;
   background-color: #ffffff !important;
 }
 
-/* Texto e ícone escuros dentro do botão do carrinho */
 .cart-btn,
 .cart-btn .mdc-button__label,
 .cart-btn mat-icon {
   color: #121212 !important;
+}
+
+.menu-toggle {
+  display: none;
+  color: #00bcd4;
+}
+
+@media (max-width: 768px) {
+  .header-toolbar {
+    padding: 0 16px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    background-color: #161920;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    box-sizing: border-box;
+  }
+
+  .nav-links a {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+  }
+
+  .cart-btn {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
 }

@@ -1,86 +1,8 @@
-.catalog-section {
-  padding: 40px 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+:host {
+  display: block;
+  width: 100%;
 }
 
-.section-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 32px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-/* Cor do destaque do título voltada para o azul ciano original */
-.highlight {
-  color: #00bcd4;
-}
-
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-/* Card ajustado para o fundo escuro com borda suave */
-.game-card {
-  background-color: #1a1a1a !important;
-  color: #ffffff !important;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid #2a2a2a;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.game-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.25);
-}
-
-/* Ajuste das cores dos textos dentro dos cards */
-mat-card-title {
-  color: #ffffff !important;
-  font-size: 1.25rem !important;
-  font-weight: bold !important;
-}
-
-mat-card-subtitle {
-  color: #00bcd4 !important; /* Categoria em azul */
-  font-size: 0.85rem !important;
-  margin-top: 4px !important;
-}
-
-.game-description {
-  margin: 12px 0;
-  color: #b0b0b0;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.game-price {
-  font-size: 1.4rem;
-  font-weight: bold;
-  color: #00e676; /* Verde chamativo para o preço */
-  margin: 8px 0;
-}
-
-/* Botão de comprar no padrão do Angular Material com tom escuro/azul */
-.game-card button {
-  background-color: #ffffff !important;
-  color: #121212 !important;
-  font-weight: bold !important;
-}
-
-.game-card button mat-icon {
-  color: #121212 !important;
-}
-
-.game-card button:hover {
-  background-color: #00bcd4 !important;
-  color: #ffffff !important;
-}
 .catalog-container {
   padding: 20px 0;
 }
@@ -105,13 +27,28 @@ mat-card-subtitle {
   color: #00bcd4;
 }
 
+/* Base do Grid: Trilho com rolagem horizontal no Mobile/Tablet */
 .games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Oculta a barra de rolagem visual mantendo a funcionalidade de arrastar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
+.games-grid::-webkit-scrollbar {
+  display: none;
+}
+
+/* Configuração de cada card dentro do trilho */
 .game-card {
+  flex: 0 0 300px; /* Largura fixa para os cards não encolherem no trilho */
+  scroll-snap-align: start;
   background-color: #16181e !important;
   color: #ffffff !important;
   border-radius: 6px;
@@ -120,11 +57,19 @@ mat-card-subtitle {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.25);
+}
+
+.card-image,
 .game-card img {
   height: 200px;
   object-fit: cover;
+  width: 100%;
 }
 
 mat-card-header {
@@ -166,7 +111,6 @@ mat-card-actions {
   padding: 0 16px 16px 16px !important;
 }
 
-/* Botão azul neon fiel ao site original */
 .buy-button {
   width: 100%;
   background-color: #00bcd4 !important;
@@ -180,7 +124,18 @@ mat-card-actions {
 
 .buy-button:hover {
   background-color: #00acc1 !important;
-}
-.game-card button:hover mat-icon {
   color: #ffffff !important;
+}
+
+/* Telas grandes (Desktop): Volta a ser Grid normal */
+@media (min-width: 1024px) {
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    overflow-x: visible;
+  }
+
+  .game-card {
+    flex: initial;
+  }
 }

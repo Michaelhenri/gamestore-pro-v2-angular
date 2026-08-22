@@ -6,12 +6,16 @@
 
   <span class="spacer"></span>
 
-  <nav class="nav-links">
-    <a mat-button routerLink="/">HOME</a>
-    <a mat-button href="#section-vendidos">PRODUTOS</a>
-    <a mat-button routerLink="/login">LOGIN</a>
+  <button mat-icon-button class="menu-toggle" (click)="toggleMenu()" aria-label="Menu">
+    <mat-icon>{{ menuAberto ? 'close' : 'menu' }}</mat-icon>
+  </button>
+
+  <nav class="nav-links" [class.active]="menuAberto">
+    <a mat-button routerLink="/" (click)="fecharMenu()">HOME</a>
+    <a mat-button href="#section-vendidos" (click)="fecharMenu()">PRODUTOS</a>
+    <a mat-button routerLink="/login" (click)="fecharMenu()">LOGIN</a>
     
-    <a mat-raised-button color="accent" href="#carrinho" class="cart-btn">
+    <a mat-raised-button color="accent" href="#carrinho" class="cart-btn" (click)="fecharMenu()">
       <mat-icon>shopping_cart</mat-icon>
       <span>Carrinho (0)</span>
     </a>
