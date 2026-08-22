@@ -33,7 +33,7 @@ export class BannerComponent implements OnInit, OnDestroy {
       descricao: 'A sua arena de compras definitiva. Os melhores hardwares, consoles e os jogos mais aguardados do mercado em um só lugar.',
       botaoTexto: 'EXPLORAR LOJA',
       link: '#section-vendidos',
-      imagem: 'assets/banner1.png'
+      imagem: 'assets/banner1.PNG'
     },
     {
       badge: 'PROMOÇÃO DE INVERNO',
