@@ -12,7 +12,7 @@
           <mat-card-subtitle>{{ item.categoria }}</mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image [src]="item.imagem" [alt]="item.titulo" class="card-image">
+        <img mat-card-image [src]="item.imagem" [alt]="item.titulo" class="card-image" loading="lazy" decoding="async">
         
         <mat-card-content>
           <p class="game-description">{{ item.descricao }}</p>
@@ -39,7 +39,7 @@
           <mat-card-subtitle>{{ jogo.categoria }}</mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image [src]="jogo.imagem" [alt]="jogo.titulo" class="card-image">
+        <img mat-card-image [src]="jogo.imagem" [alt]="jogo.titulo" class="card-image" loading="lazy" decoding="async">
         
         <mat-card-content>
           <p class="game-description">{{ jogo.descricao }}</p>

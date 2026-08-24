@@ -35,6 +35,7 @@
   scroll-snap-type: x mandatory;
   padding-bottom: 12px;
   -webkit-overflow-scrolling: touch;
+  will-change: transform;
   
   /* Oculta a barra de rolagem visual mantendo a funcionalidade de arrastar */
   scrollbar-width: none;
@@ -70,6 +71,9 @@
   height: 200px;
   object-fit: cover;
   width: 100%;
+  aspect-ratio: 16 / 9;
+  will-change: transform;
+  contain: content;
 }
 
 mat-card-header {
