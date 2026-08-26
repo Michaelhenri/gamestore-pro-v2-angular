@@ -1,0 +1,93 @@
+<main class="login-container">
+  @if (isLoginView) {
+    <!-- SEÇÃO LOGIN -->
+    <section class="login-card">
+      <h1 class="login-title">Login</h1>
+
+      <form (submit)="onSubmit($event)" id="login">
+        <div class="form-group">
+          <label for="usuario">Nome:</label>
+          <input 
+            id="usuario" 
+            name="usuario" 
+            required 
+            type="text"
+            placeholder="Insira o seu usuário"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="senha">Senha:</label>
+          <input 
+            id="senha" 
+            name="senha" 
+            required 
+            type="password"
+            placeholder="Insira a sua senha"
+          />
+        </div>
+
+        <div class="form-action">
+          <button type="submit" class="btn-enter">Entrar</button>
+        </div>
+
+        <div class="form-footer">
+          <a href="#" (click)="toggleView($event)" class="link-cadastro">
+            Não é cadastrado ainda? Cadastre-se
+          </a>
+        </div>
+      </form>
+    </section>
+  } @else {
+    <!-- SEÇÃO CADASTRO -->
+    <section class="login-card">
+      <h1 class="login-title">Criar minha conta</h1>
+      <p class="login-subtitle">Informe os seus dados abaixo para criar sua conta.</p>
+
+      <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input 
+            id="email" 
+            name="email" 
+            required 
+            type="email" 
+            placeholder="seu@email.com.br"
+          />
+        </div>
+
+      <form (submit)="onSubmit($event)" id="cadastro">
+        <div class="form-group">
+          <label for="usuario-cad">Usuário:</label>
+          <input 
+            id="usuario-cad" 
+            name="usuario" 
+            required 
+            type="text"
+            placeholder="ex. nome de usuário"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="senha-cad">Senha:</label>
+          <input 
+            id="senha-cad" 
+            name="senha" 
+            required 
+            type="password"
+            placeholder="mínimo de 6 caracteres"
+          />
+        </div>
+
+        <div class="form-action">
+          <button type="submit" class="btn-enter">Cadastrar</button>
+        </div>
+
+        <div class="form-footer">
+          <a href="#" (click)="toggleView($event)" class="link-cadastro">
+            Já tem uma conta? Faça Login
+          </a>
+        </div>
+      </form>
+    </section>
+  }
+</main>

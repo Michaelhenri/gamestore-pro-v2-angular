@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { BannerComponent } from '../banner/banner';
+import { BannerComponent } from '../../../components/banner/banner';
 
 interface Item {
   id: number;
