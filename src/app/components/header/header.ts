@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule } from '@angular/material/menu';
+import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +17,14 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatMenuModule
   ],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
 export class HeaderComponent {
+  public authService = inject(Auth);
   menuAberto = false;
 
   toggleMenu(): void {
@@ -29,5 +33,9 @@ export class HeaderComponent {
 
   fecharMenu(): void {
     this.menuAberto = false;
+  }
+
+  logout(): void {
+    this.authService.fazerLogout();
   }
 }

@@ -106,3 +106,25 @@
     display: flex;
   }
 }
+
+.user-menu-btn {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-menu-btn mat-icon {
+  color: #ffffff !important;
+}
+
+.user-greeting {
+  color: #00d2d3;
+  font-weight: bold;
+  font-size: 1rem;
+  padding-left: 8px;
+  padding-right: 0px;
+  display: inline-flex;
+  align-items: center;
+}
