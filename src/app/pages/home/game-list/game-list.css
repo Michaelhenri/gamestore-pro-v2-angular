@@ -23,10 +23,6 @@
   text-transform: uppercase;
 }
 
-.highlight {
-  color: #00bcd4;
-}
-
 /* Base do Grid: Trilho com rolagem horizontal no Mobile/Tablet */
 .games-grid {
   display: flex;
