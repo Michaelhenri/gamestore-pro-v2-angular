@@ -5,12 +5,17 @@ export interface Usuario {
   email: string;
 }
 
+export type PerfilUsuario = 'VISITANTE' | 'CLIENTE' | 'ADMIN';
+
 @Injectable({
   providedIn: 'root',
 })
 export class Auth {
   // Signal que guarda o estado do usuário (inicia buscando do localStorage)
   usuarioLogado = signal<Usuario | null>(this.obterUsuarioDoStorage());
+
+  // Signal que guarda o perfil (definido como ADMIN por padrão para testes)
+  perfilAtual = signal<PerfilUsuario>('ADMIN');
 
   // Tenta ler se já existe uma sessão salva ao abrir a página
   private obterUsuarioDoStorage(): Usuario | null {
@@ -28,5 +33,11 @@ export class Auth {
   fazerLogout() {
     localStorage.removeItem('usuario_sessao');
     this.usuarioLogado.set(null);
+    this.perfilAtual.set('VISITANTE');
+  }
+
+  // Método para verificar permissão de administrador
+  eAdmin(): boolean {
+    return this.perfilAtual() === 'ADMIN';
   }
 }
