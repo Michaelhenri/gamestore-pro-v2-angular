@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -14,12 +15,11 @@ export class Login {
 
   isLoginView: boolean = true;
 
-  // Campos de Login
-  loginUsuario: string = '';
+  // Campos de Login (apenas e-mail e senha)
+  loginEmail: string = '';
   loginSenha: string = '';
 
-  // Campos de Cadastro
-  cadUsuario: string = '';
+  // Campos de Cadastro (apenas e-mail e senha)
   cadEmail: string = '';
   cadSenha: string = '';
 
@@ -31,16 +31,29 @@ export class Login {
   onCadastrar(event: Event) {
     event.preventDefault();
 
-    const novoUsuario = {
-      nome: this.cadUsuario,
+    if (!this.cadEmail || !this.cadSenha) {
+      alert('Preencha o e-mail e a senha para se cadastrar.');
+      return;
+    }
+
+    const clientesCadastrados = JSON.parse(
+      localStorage.getItem('usuarios_cadastrados') || '[]'
+    );
+
+    // Adiciona o novo cliente
+    clientesCadastrados.push({
       email: this.cadEmail,
       senha: this.cadSenha,
-    };
+      perfil: 'CLIENTE',
+    });
 
-    localStorage.setItem('usuario_cadastrado', JSON.stringify(novoUsuario));
+    localStorage.setItem(
+      'usuarios_cadastrados',
+      JSON.stringify(clientesCadastrados)
+    );
+
     alert('Cadastro realizado com sucesso! Faça login para continuar.');
 
-    this.cadUsuario = '';
     this.cadEmail = '';
     this.cadSenha = '';
     this.isLoginView = true;
@@ -49,25 +62,20 @@ export class Login {
   onLogin(event: Event) {
     event.preventDefault();
 
-    const usuarioSalvo = localStorage.getItem('usuario_cadastrado');
+    // Executa a autenticação validando o e-mail e senha no serviço Auth
+    const sucesso = this.authService.fazerLogin(this.loginEmail, this.loginSenha);
 
-    if (!usuarioSalvo) {
-      alert('Nenhum usuário cadastrado até o momento!');
-      return;
-    }
+    if (sucesso) {
+      alert('Login realizado com sucesso!');
 
-    const usuario = JSON.parse(usuarioSalvo);
-
-    if (this.loginUsuario === usuario.nome && this.loginSenha === usuario.senha) {
-      // 1. Notifica o serviço global que o usuário logou
-      this.authService.fazerLogin({ nome: usuario.nome, email: usuario.email });
-
-      alert(`Bem-vindo, ${usuario.nome}!`);
-
-      // 2. Redireciona para a página principal (Home)
-      this.router.navigate(['/']);
+      // Redireciona o ADMIN para o painel ou CLIENTE para a home
+      if (this.authService.eAdmin()) {
+        this.router.navigate(['/admin']);
+      } else {
+        this.router.navigate(['/']);
+      }
     } else {
-      alert('Usuário ou senha incorretos!');
+      alert('E-mail ou senha incorretos!');
     }
   }
 }

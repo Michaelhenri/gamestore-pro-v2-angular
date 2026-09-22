@@ -5,16 +5,17 @@
       <h1 class="login-title">Login</h1>
 
       <form (submit)="onLogin($event)" id="login">
+
         <div class="form-group">
-          <label for="usuario">Nome:</label>
+          <label for="email">E-mail:</label>
           <input 
-            id="usuario" 
-            name="usuario" 
+            id="email" 
+            name="email" 
             required 
-            type="text"
-            placeholder="Insira o seu usuário"
-            [value]="loginUsuario"
-            (input)="loginUsuario = $any($event.target).value"
+            type="email"
+            placeholder="seu@email.com.br"
+            [value]="loginEmail"
+            (input)="loginEmail = $any($event.target).value"
           />
         </div>
 
@@ -51,28 +52,15 @@
       <form (submit)="onCadastrar($event)" id="cadastro">
 
         <div class="form-group">
-          <label for="email">E-mail:</label>
+          <label for="email-cad">E-mail:</label>
           <input 
-            id="email" 
+            id="email-cad" 
             name="email" 
             required 
             type="email" 
             placeholder="seu@email.com.br"
             [value]="cadEmail"
             (input)="cadEmail = $any($event.target).value"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="usuario-cad">Usuário:</label>
-          <input 
-            id="usuario-cad" 
-            name="usuario" 
-            required 
-            type="text"
-            placeholder="ex. nome de usuário"
-            [value]="cadUsuario"
-            (input)="cadUsuario = $any($event.target).value"
           />
         </div>
 

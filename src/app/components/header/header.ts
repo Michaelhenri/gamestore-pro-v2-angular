@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +25,7 @@ import { Auth } from '../../services/auth';
 })
 export class HeaderComponent {
   public authService = inject(Auth);
+  private router = inject(Router);
   menuAberto = false;
 
   toggleMenu(): void {
@@ -37,5 +38,7 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.fazerLogout();
+    this.fecharMenu();
+    this.router.navigate(['/login']);
   }
 }
