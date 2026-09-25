@@ -67,6 +67,24 @@
   color: #00bcd4;
 }
 
+.user-menu-btn {
+  color: #ffffff !important;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.user-menu-btn mat-icon {
+  color: #ffffff !important;
+}
+
+.badge-admin {
+  color: #00bcd4;
+  margin-left: 4px;
+  font-weight: bold;
+}
+
 @media (max-width: 768px) {
   .header-toolbar {
     padding: 0 16px;
@@ -107,24 +125,37 @@
   }
 }
 
-.user-menu-btn {
-  color: #ffffff !important;
-  font-weight: 600;
-  font-size: 0.9rem;
-  display: inline-flex;
-  align-items: center;
+/* Customização do Dropdown do Menu do Usuário (Tema Dark/Gamer) */
+.custom-user-menu.mat-mdc-menu-panel {
+  background-color: #1a1d24 !important;
+  border: 1px solid #2a2e39;
+  border-radius: 8px !important;
+  min-width: 170px !important;
+  padding: 4px 0 !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7) !important;
 }
 
-.user-menu-btn mat-icon {
+.custom-user-menu .mat-mdc-menu-item {
+  color: #e0e0e0 !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  font-size: 0.88rem !important;
+}
+
+.custom-user-menu .mat-mdc-menu-item:hover {
+  background-color: #262b36 !important;
   color: #ffffff !important;
 }
 
-.user-greeting {
-  color: #00d2d3;
-  font-weight: bold;
-  font-size: 1rem;
-  padding-left: 8px;
-  padding-right: 0px;
-  display: inline-flex;
-  align-items: center;
+.custom-user-menu .icon-cyan {
+  color: #00bcd4 !important;
+}
+
+.custom-user-menu .icon-red {
+  color: #ff5252 !important;
+}
+
+.custom-user-menu mat-divider {
+  border-top-color: #2a2e39 !important;
+  margin: 4px 0 !important;
 }

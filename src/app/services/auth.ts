@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 export type PerfilUsuario = 'VISITANTE' | 'CLIENTE' | 'ADMIN';
 
 export interface Usuario {
-  nome?: string;
+  nome: string;
   email: string;
   senha?: string;
   perfil: PerfilUsuario;
@@ -13,7 +13,6 @@ export interface Usuario {
   providedIn: 'root',
 })
 export class Auth {
-  // Inicializa o perfil e o usuário a partir do localStorage para manter o login no F5
   usuarioLogado = signal<Usuario | null>(this.obterUsuarioDoStorage());
   perfilAtual = signal<PerfilUsuario>(this.obterPerfilDoStorage());
 
@@ -27,9 +26,46 @@ export class Auth {
     return perfilSalvo ? perfilSalvo : 'VISITANTE';
   }
 
-  // Tenta realizar o login validando Admin OU Cliente do localStorage
+  // CADASTRO COM VALIDAÇÃO DE E-MAIL ÚNICO
+  cadastrarUsuario(novoUsuario: Usuario): { sucesso: boolean; mensagem: string } {
+    // 1. Bloqueia tentativa de cadastrar com o e-mail reservado do admin
+    if (novoUsuario.email.toLowerCase() === 'admin@teste.com') {
+      return {
+        sucesso: false,
+        mensagem: 'Este e-mail é reservado ao sistema.'
+      };
+    }
+
+    // 2. Busca todos os cadastros existentes nas duas chaves
+    const cadastrosChave1 = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]');
+    const cadastrosChave2 = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    const clientesCadastrados: Usuario[] = [...cadastrosChave1, ...cadastrosChave2];
+
+    // 3. Verifica se o e-mail já existe (ignora maiúsculas/minúsculas)
+    const emailExiste = clientesCadastrados.some(
+      u => u.email.toLowerCase() === novoUsuario.email.toLowerCase()
+    );
+
+    if (emailExiste) {
+      return {
+        sucesso: false,
+        mensagem: 'Este e-mail já está cadastrado. Tente fazer login ou use outro e-mail.'
+      };
+    }
+
+    // 4. Se o e-mail for inédito, força o perfil para CLIENTE e salva na chave principal
+    novoUsuario.perfil = 'CLIENTE';
+    cadastrosChave1.push(novoUsuario);
+    localStorage.setItem('usuarios_cadastrados', JSON.stringify(cadastrosChave1));
+
+    return {
+      sucesso: true,
+      mensagem: 'Cadastro realizado com sucesso!'
+    };
+  }
+
   fazerLogin(emailDigitado: string, senhaDigitada: string): boolean {
-    // 1. USUÁRIO ADMIN PRÉ-CADASTRADO (Chave estática de testes)
+    // 1. ADMIN PRÉ-CADASTRADO
     if (emailDigitado === 'admin@teste.com' && senhaDigitada === '123456') {
       const usuarioAdmin: Usuario = {
         nome: 'Administrador',
@@ -40,27 +76,27 @@ export class Auth {
       return true;
     }
 
-    // 2. USUÁRIOS CLIENTES (Buscados dos cadastros feitos no localStorage)
-    const clientesCadastrados = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]') as Usuario[];
+    // 2. CLIENTES (Verifica as duas chaves possíveis de cadastro)
+    const cadastrosChave1 = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]');
+    const cadastrosChave2 = JSON.parse(localStorage.getItem('usuarios') || '[]');
+    const clientesCadastrados: Usuario[] = [...cadastrosChave1, ...cadastrosChave2];
     
     const clienteEncontrado = clientesCadastrados.find(
       u => u.email === emailDigitado && u.senha === senhaDigitada
     );
 
     if (clienteEncontrado) {
-      // Garante o perfil CLIENTE para cadastros normais
       clienteEncontrado.perfil = 'CLIENTE'; 
       this.salvarSessao(clienteEncontrado);
       return true;
     }
 
-    return false; // Login inválido
+    return false;
   }
 
-  // Grava a sessão e atualiza os Signals da aplicação
   private salvarSessao(usuario: Usuario) {
     const usuarioSemSenha = { ...usuario };
-    delete usuarioSemSenha.senha; // Não salva a senha na sessão por segurança
+    delete usuarioSemSenha.senha;
 
     localStorage.setItem('usuario_sessao', JSON.stringify(usuarioSemSenha));
     localStorage.setItem('perfil_usuario', usuario.perfil);
@@ -69,7 +105,6 @@ export class Auth {
     this.perfilAtual.set(usuario.perfil);
   }
 
-  // Limpa a sessão
   fazerLogout() {
     localStorage.removeItem('usuario_sessao');
     localStorage.removeItem('perfil_usuario');
@@ -77,8 +112,13 @@ export class Auth {
     this.perfilAtual.set('VISITANTE');
   }
 
-  // Método auxiliar para o Guard
   eAdmin(): boolean {
     return this.perfilAtual() === 'ADMIN';
+  }
+
+  get primeiroNome(): string {
+    const usuario = this.usuarioLogado();
+    if (!usuario || !usuario.nome) return '';
+    return usuario.nome.trim().split(' ')[0];
   }
 }

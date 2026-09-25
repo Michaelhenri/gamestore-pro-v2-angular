@@ -17,16 +17,24 @@
     @if (authService.usuarioLogado(); as usuario) {
     <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-btn">
       <mat-icon>account_circle</mat-icon>
-      <span>Olá, {{ usuario.nome }}</span>
+      <span>Olá, {{ authService.primeiroNome }}!</span>
       @if (authService.eAdmin()) {
         <span class="badge-admin">(Admin)</span>
       }
       <mat-icon>arrow_drop_down</mat-icon>
     </button>
     
-    <mat-menu #userMenu="matMenu">
+    <mat-menu #userMenu="matMenu" class="custom-user-menu">
+      @if (authService.eAdmin()) {
+        <button mat-menu-item routerLink="/admin" (click)="fecharMenu()">
+          <mat-icon class="icon-cyan">admin_panel_settings</mat-icon>
+          <span>Painel Admin</span>
+        </button>
+        <mat-divider></mat-divider>
+      }
+
       <button mat-menu-item (click)="logout()">
-        <mat-icon color="warn">exit_to_app</mat-icon>
+        <mat-icon class="icon-red">exit_to_app</mat-icon>
         <span>Sair</span>
       </button>
     </mat-menu>

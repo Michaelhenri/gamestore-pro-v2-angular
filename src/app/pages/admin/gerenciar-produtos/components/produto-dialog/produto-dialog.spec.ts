@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Admin } from './admin';
+import { ProdutoDialog } from './produto-dialog';
 
-describe('Admin', () => {
-  let component: Admin;
-  let fixture: ComponentFixture<Admin>;
+describe('ProdutoDialog', () => {
+  let component: ProdutoDialog;
+  let fixture: ComponentFixture<ProdutoDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Admin],
+      imports: [ProdutoDialog],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Admin);
+    fixture = TestBed.createComponent(ProdutoDialog);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 import { Auth } from '../../services/auth';
 
 @Component({
@@ -18,7 +19,8 @@ import { Auth } from '../../services/auth';
     MatButtonModule,
     MatIconModule,
     MatBadgeModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDividerModule // 👈 Adicionado aqui
   ],
   templateUrl: './header.html',
   styleUrl: './header.css'

@@ -15,11 +15,12 @@ export class Login {
 
   isLoginView: boolean = true;
 
-  // Campos de Login (apenas e-mail e senha)
+  // Campos de Login
   loginEmail: string = '';
   loginSenha: string = '';
 
-  // Campos de Cadastro (apenas e-mail e senha)
+  // Campos de Cadastro
+  cadNome: string = '';
   cadEmail: string = '';
   cadSenha: string = '';
 
@@ -36,24 +37,25 @@ export class Login {
       return;
     }
 
-    const clientesCadastrados = JSON.parse(
-      localStorage.getItem('usuarios_cadastrados') || '[]'
-    );
-
-    // Adiciona o novo cliente
-    clientesCadastrados.push({
+    // Chama a validação e criação centralizada no authService
+    const resultado = this.authService.cadastrarUsuario({
+      nome: this.cadNome,
       email: this.cadEmail,
       senha: this.cadSenha,
       perfil: 'CLIENTE',
     });
 
-    localStorage.setItem(
-      'usuarios_cadastrados',
-      JSON.stringify(clientesCadastrados)
-    );
+    if (!resultado.sucesso) {
+      // Exibe a mensagem de e-mail duplicado/reservado sem alternar a tela
+      alert(resultado.mensagem);
+      return;
+    }
 
-    alert('Cadastro realizado com sucesso! Faça login para continuar.');
+    // Sucesso no cadastro
+    alert(resultado.mensagem);
 
+    // Limpa os campos e volta para a tela de login
+    this.cadNome = '';
     this.cadEmail = '';
     this.cadSenha = '';
     this.isLoginView = true;
@@ -62,13 +64,11 @@ export class Login {
   onLogin(event: Event) {
     event.preventDefault();
 
-    // Executa a autenticação validando o e-mail e senha no serviço Auth
     const sucesso = this.authService.fazerLogin(this.loginEmail, this.loginSenha);
 
     if (sucesso) {
       alert('Login realizado com sucesso!');
 
-      // Redireciona o ADMIN para o painel ou CLIENTE para a home
       if (this.authService.eAdmin()) {
         this.router.navigate(['/admin']);
       } else {

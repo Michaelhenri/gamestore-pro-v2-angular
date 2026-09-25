@@ -1,0 +1,84 @@
+/* Container Principal ocupando altura para empurrar o footer */
+.admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: calc(100vh - 160px); /* Garante que o footer fique na base da tela */
+  box-sizing: border-box;
+}
+
+/* Cabeçalho do Painel */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.admin-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Card da Tabela Escuro */
+.table-card {
+  overflow-x: auto;
+  border-radius: 12px;
+  background-color: #121214 !important;
+  border: 1px solid #29292e;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilização Dark para Tabela do Angular Material */
+table.mat-mdc-table {
+  width: 100%;
+  background-color: #121214 !important;
+}
+
+/* Cabeçalho da Tabela */
+tr.mat-mdc-header-row {
+  background-color: #1a1a1e !important;
+  border-bottom: 1px solid #29292e !important;
+}
+
+th.mat-mdc-header-cell {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #00d2ff !important; /* Destaque na cor do tema */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Linhas e Células */
+tr.mat-mdc-row {
+  background-color: #121214 !important;
+  transition: background-color 0.2s ease;
+}
+
+tr.mat-mdc-row:hover {
+  background-color: #202024 !important; /* Efeito de destaque ao passar o mouse */
+}
+
+td.mat-mdc-cell {
+  color: #e1e1e6 !important;
+  border-bottom: 1px solid #29292e !important;
+  font-size: 0.95rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+td.mat-mdc-cell button {
+  margin: 0 4px;
+}
+
+.mat-icon-button.mat-accent {
+  color: #00d2ff !important;
+}
+
+.mat-icon-button.mat-warn {
+  color: #ff5555 !important;
+}
