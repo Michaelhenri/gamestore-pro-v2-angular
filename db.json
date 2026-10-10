@@ -1,0 +1,25 @@
+{
+  "produtos": [
+    {
+      "id": "101",
+      "titulo": "Headset Gamer Pro X",
+      "categoria": "Periféricos",
+      "preco": 239.9
+    },
+    {
+      "id": "1",
+      "titulo": "Cyberpunk 2077",
+      "categoria": "RPG / Ação",
+      "preco": 199.9
+    },
+    {
+      "titulo": "God of War Ragnarök",
+      "categoria": "Ação / Aventura",
+      "preco": 199.9,
+      "descricao": "Embarque em uma jornada mítica com Kratos e Atreus pelos Nove Reinos.",
+      "imagem": "assets/god-of-war.jpg",
+      "id": "zLWeDN3faQE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

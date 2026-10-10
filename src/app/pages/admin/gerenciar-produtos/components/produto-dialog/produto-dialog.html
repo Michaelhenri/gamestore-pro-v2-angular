@@ -1,1 +1,37 @@
-<p>produto-dialog works!</p>
+<h2 mat-dialog-title>{{ data?.produto ? 'Editar Produto' : 'Novo Produto' }}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <div class="form-container" style="display: flex; flex-direction: column; gap: 15px; min-width: 300px; padding-top: 10px;">
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Título do Produto</mat-label>
+      <input matInput [(ngModel)]="produto.titulo" placeholder="Ex: Headset Gamer Pro X" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Categoria</mat-label>
+      <input matInput [(ngModel)]="produto.categoria" placeholder="Ex: Periféricos" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Preço (R$)</mat-label>
+      <input matInput type="number" [(ngModel)]="produto.preco" placeholder="Ex: 249.90" required>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descrição</mat-label>
+      <textarea matInput [(ngModel)]="produto.descricao" placeholder="Ex: Som surround 7.1..."></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>URL da Imagem</mat-label>
+      <input matInput [(ngModel)]="produto.imagem" placeholder="Ex: assets/img/headset.jpg">
+    </mat-form-field>
+
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="salvar()">Salvar</button>
+</mat-dialog-actions>

@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ProdutoService } from '../../../services/produto';
+import { ProdutoDialog } from './components/produto-dialog/produto-dialog';
 
 @Component({
   selector: 'app-gerenciar-produtos',
@@ -13,29 +16,73 @@ import { MatTableModule } from '@angular/material/table';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule
   ],
   templateUrl: './gerenciar-produtos.html',
   styleUrl: './gerenciar-produtos.css'
 })
-export class GerenciarProdutos {
-  // Lista temporária em memória para montar o layout da tabela
-  produtos = [
-    { id: 101, titulo: 'Headset Gamer Pro X', categoria: 'Periféricos', preco: 349.90 },
-    { id: 1, titulo: 'Cyberpunk 2077', categoria: 'RPG / Ação', preco: 199.90 }
-  ];
-
+export class GerenciarProdutos implements OnInit {
+  produtos: any[] = [];
   colunasTabela: string[] = ['id', 'titulo', 'categoria', 'preco', 'acoes'];
 
+  constructor(
+    private produtoService: ProdutoService,
+    private cdr: ChangeDetectorRef,
+    private dialog: MatDialog
+  ) {}
+
+  ngOnInit(): void {
+    this.carregarProdutos();
+  }
+
+  carregarProdutos(): void {
+    this.produtoService.listar().subscribe({
+      next: (dados) => {
+        this.produtos = dados;
+        this.cdr.detectChanges();
+      },
+      error: (erro) => {
+        console.error('Erro ao carregar produtos da API:', erro);
+      }
+    });
+  }
+
   abrirFormularioNovo(): void {
-    console.log('Novo produto clicado');
+    const dialogRef = this.dialog.open(ProdutoDialog, {
+      width: '450px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.carregarProdutos(); // Recarrega a tabela automaticamente após cadastrar
+      }
+    });
   }
 
   editarProduto(produto: any): void {
-    console.log('Editar:', produto);
+    const dialogRef = this.dialog.open(ProdutoDialog, {
+      width: '450px',
+      data: { produto: produto }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.carregarProdutos(); // Recarrega a tabela após salvar a edição
+      }
+    });
   }
 
-  excluirProduto(id: number): void {
-    console.log('Excluir id:', id);
+  excluirProduto(id: string): void {
+    if (confirm('Tem certeza que deseja excluir este produto?')) {
+      this.produtoService.deletar(id).subscribe({
+        next: () => {
+          this.carregarProdutos();
+        },
+        error: (erro) => {
+          console.error('Erro ao excluir produto:', erro);
+        }
+      });
+    }
   }
 }
