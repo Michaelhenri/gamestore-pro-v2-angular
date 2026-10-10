@@ -1,59 +1,41 @@
-# GamestoreProAngular
+# 🎮 Game Store Pro
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.15.
+Este projeto é uma aplicação web moderna desenvolvida em **Angular** (standalone), focada na gestão de uma loja de jogos digitais e periféricos para fins academicos, aplicando o consumo de API REST completa (CRUD) através do `HttpClient` e gerenciamento de estado assíncrono.
 
-## Development server
 
-To start a local development server, run:
+### 🔗 Links do Projeto
+* **Repositório do Código-Fonte (GitHub):** [https://github.com/Michaelhenri/gamestore-pro-v2-angular](https://github.com/Michaelhenri/gamestore-pro-v2-angular)
+* **Aplicação Publicada (GitHub Pages):** [https://michaelhenri.github.io/gamestore-pro-v2-angular/](https://michaelhenri.github.io/gamestore-pro-v2-angular/)
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+### 🔑 Acesso Administrativo para Testes
+Para acessar o Painel Administrativo de Gestão de Produtos (`/admin`) e testar as funcionalidades de gerenciamento, utilize as credenciais de Administrador padrão cadastradas no sistema:
+* **E-mail:** `admin@teste.com`
+* **Senha:** `123456`
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### 💻 Instruções para Rodar o Projeto Localmente
+Como a aplicação consome dados dinâmicos de uma API local (`json-server`), para testar a persistência completa das operações de **Listagem (GET)**, **Cadastro (POST)**, **Edição (PUT)** e **Exclusão (DELETE)** em tempo real, siga o procedimento abaixo:
 
-```bash
-ng generate component component-name
-```
+1. **Clone o repositório em sua máquina:**
+   git clone https://github.com/Michaelhenri/gamestore-pro-v2-angular.git
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+2. **Entre na pasta do projeto:**
+   cd gamestore-pro-v2-angular
 
-```bash
-ng generate --help
-```
+3. **Instale as dependências do projeto:**
+   npm install
 
-## Building
+4. **Inicie o servidor da API (`json-server`) em um terminal:**
+   *(O servidor rodará na porta 3000 utilizando o arquivo `db.json`)*
+   npx json-server db.json
 
-To build the project run:
+5. **Inicie a aplicação Angular em um segundo terminal:**
+   ng serve
 
-```bash
-ng build
-```
+6. **Acesse no navegador:** 
+   Abra `http://localhost:4200/`, faça o login com as credenciais administrativas acima e navegue até a área de gestão para realizar os testes de Listagem (GET), Cadastro (POST), Edição (PUT) e Exclusão (DELETE) dos produtos.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+*Nota: Atualmente, as operações de CRUD do painel administrativo refletem diretamente na gestão interna (`/admin`) não tendo modificações na Home.*
